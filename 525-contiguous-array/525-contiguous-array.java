@@ -5,7 +5,9 @@ class Solution {
         int length=0;
         map.put(0,-1);
         for(int i=0;i<nums.length;i++){
-            currsum+=(nums[i]==1?1:-1);
+            if(nums[i]==1) currsum++;
+            else currsum--;
+            
             if(map.containsKey(currsum)){
                 length=Math.max(length,i-map.get(currsum));
             }
