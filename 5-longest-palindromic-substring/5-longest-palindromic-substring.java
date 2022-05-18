@@ -18,8 +18,7 @@ class Solution {
             boolean subString = isPalindrome(s,i+1,j-1);
             if(subString){
                 dp[i][j]=true;
-                if(j-i+1>ans.length()) 
-                    ans = s.substring(i,j+1);
+                if(j-i+1>ans.length())  ans = s.substring(i,j+1);
                 return dp[i][j];
             }
         }
