@@ -1,11 +1,11 @@
 class Solution {
     Boolean[][] dp;
-    String ans;
+    int startIndex,endIndex;
     public String longestPalindrome(String s) {
-        ans = s.substring(0,1);
+        startIndex=0;endIndex=0;
         dp = new Boolean[s.length()][s.length()];
-         isPalindrome(s,0,s.length()-1);
-        return ans;
+        isPalindrome(s,0,s.length()-1);
+        return s.substring(startIndex,endIndex+1);
     }
     
     public boolean isPalindrome(String s,int i,int j){
@@ -18,7 +18,10 @@ class Solution {
             boolean subString = isPalindrome(s,i+1,j-1);
             if(subString){
                 dp[i][j]=true;
-                if(j-i+1>ans.length())  ans = s.substring(i,j+1);
+                if(j-i+1>endIndex-startIndex+1)  {
+                    startIndex=i;
+                    endIndex=j;
+                }
                 return dp[i][j];
             }
         }
