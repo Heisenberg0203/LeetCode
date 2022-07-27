@@ -22,7 +22,7 @@ class Solution {
                 }
             }
         }
-        map.put(s,list);
+        //map.put(s,list);
         return list;
     }
 }
