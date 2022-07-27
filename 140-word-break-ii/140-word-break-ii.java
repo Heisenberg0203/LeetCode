@@ -12,7 +12,7 @@ class Solution {
             list.add("");
             return list;
         }
-        if(map.containsKey(s)) return map.get(s);
+        //if(map.containsKey(s)) return map.get(s);
         for(String word:dict){
             if(s.startsWith(word)){
                 List<String> suffixList = helper(s.substring(word.length()),dict);
