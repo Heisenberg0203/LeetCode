@@ -11,6 +11,7 @@ public class Codec {
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        if(root==null) return "";
         Queue<TreeNode> queue = new LinkedList<>();
         StringBuffer sb = new StringBuffer();
         queue.add(root);
@@ -32,21 +33,16 @@ public class Codec {
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        TreeNode root=null;
-        System.out.println(data);
+        if(data=="") return null;
+        
         String[] vals = data.split("#");
+        TreeNode root=new TreeNode(Integer.parseInt(vals[0]));
         Queue<TreeNode> queue = new LinkedList<>();
-        for(int i=0;i<vals.length;){
-            TreeNode parent=null;
-            if(root!=null) parent = queue.remove();
+        queue.add(root);
+        for(int i=1;i<vals.length;i+=2){
+            TreeNode parent = queue.remove();
             if(vals[i]!=""){
                 TreeNode left = new TreeNode(Integer.parseInt(vals[i]));
-                if(root==null) {
-                    root=left;
-                    queue.add(root);
-                    i++;
-                    continue;
-                }
                 parent.left = left;
                 queue.add(left);
             }
@@ -56,7 +52,6 @@ public class Codec {
                 parent.right=right;
                 queue.add(right);
             }
-            i+=2;
         }
         
         return root;
